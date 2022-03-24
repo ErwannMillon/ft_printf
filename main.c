@@ -3,6 +3,14 @@
 int main (void)
 {
 	int x = 0;
-	str_seek("abcd%.dadf %masdf");
+	ft_printf("abcd%dadf %d %umasdf, %x", 333, 134, 14, 32);
+	printf("\n");
+	printf("abcd%dadf %d %umasdf, %x", 333, 134, 14, 32);
+	printf("\n");
+	ft_printf("abcd%dadf %d %umasdf, %x", 1234, -4567, 0, 435);
+	printf("\n");
+	printf("abcd%dadf %d %umasdf, %x", 1234, -4567, 0, 435);
+
 	// printf("%d", 1234.1234);
+
 }
