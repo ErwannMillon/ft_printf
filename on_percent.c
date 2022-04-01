@@ -118,5 +118,5 @@ int	ft_printf(char	*str, ...)
 		}
 		x = str_seek(str);
 	}
-
+	return (1);
 }

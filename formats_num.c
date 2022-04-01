@@ -38,7 +38,7 @@ int	handle_p(void	*p)
 	char *hex;
 	int len;
 
-	hex = base_convert(p, "0123456789abcdef");
+	hex = base_convert((long int)p, "0123456789abcdef");
 	str = ft_strjoin("0x", hex);
 	len = ft_strlen(str);
 	write(1, str, len);

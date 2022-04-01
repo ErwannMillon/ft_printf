@@ -16,6 +16,7 @@ int			handle_p(void	*p);
 int			handle_o(long int dec);
 int			handle_lint_arg(char c, long int dec);
 int			handle_str_arg(char c, char *str);
+int			handle_char_arg(char c, char b);
 void		ft_putnbr(long int nb);
 void		ft_putstr(char *str);
 int			ft_printf(char	*str, ...);

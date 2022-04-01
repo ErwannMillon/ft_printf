@@ -1,3 +1,6 @@
+#include "ft_printf.h"
+#include "libft.h"
+
 int handle_c(char c)
 {
 	write(1, &c, 1);
