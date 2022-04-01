@@ -95,25 +95,32 @@ int	ft_printf(char	*str, ...)
 
 	va_start(list, str);
 	char x = str_seek(str);
+	len = ft_strlen(str);
 	while (x)
 	{
 		if (x != -1)
 		{
 			// printf("%c\n", x);
-			if (x == 'i' || x == 's')
+			if (x == 's')
 			{
-				len += handle_str_arg(x, va_arg(list, char *));
+				len += handle_str_arg(x, va_arg(list, char *)) - 2;
 			}
-			else if (x == 'u' || x == 'd' || x == 'p' || x == 'x' || x == 'X')
+			else if (x == 'i' || x == 'u' || x == 'd' || x == 'p' || x == 'x' || x == 'X')
 			{
-				len += handle_lint_arg(x, (long int)va_arg(list, int));
+				len += handle_lint_arg(x, (long int)va_arg(list, int)) - 2;
 			}
 			else if (x == 'c')
 			{
-				len += handle_char_arg(x, va_arg(list, int));
+				len += handle_char_arg(x, va_arg(list, int)) - 2;
+			}
+			else if (x == '%')
+			{
+				len += (write(1, "%", 1)) - 2;
 			}
 		}
+		else
+			return(-1);
 		x = str_seek(str);
 	}
-	return (1);
+	return (len);
 }

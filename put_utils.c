@@ -1,6 +1,21 @@
 #include "ft_printf.h"
 #include "libft.h"
 
+long int num_len(long int copy)
+{
+	int	len;
+
+	len = 2;
+	while (copy > 0)
+	{
+		copy = copy / 10;
+		len++;
+	}
+	if (copy < 0)
+		return (len + 1);
+	return (len);
+}
+
 void ft_putchar(char c)
 {
 	write(1, &c, 1);
