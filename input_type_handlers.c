@@ -32,7 +32,6 @@ int	handle_lint_arg(char c, long int dec)
 	if (c == 'd' || c == 'u')
 	{
 		ft_putnbr(dec);
-
 	}
 	if (c == 'x')
 	{

@@ -8,8 +8,6 @@ void ft_putchar(char c)
 
 void	ft_putnbr(long int nb)
 {
-	int	x;
-
 	if (nb == -2147483648)
 	{
 		write(1, "-", 1);

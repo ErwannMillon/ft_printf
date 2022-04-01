@@ -14,6 +14,7 @@ libft.a:
 	cd ./libft && mv libft.a ../
 test: $(NAME) libft.a
 	gcc -ggdb main.c $(SRCS) libft.a
+	rm *.o
 asan: $(OBJS)
 	gcc -fsanitize=address $(OBJS) -o $(NAME)
 clean:

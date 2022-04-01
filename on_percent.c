@@ -90,9 +90,6 @@ char	str_seek(char *str)
 
 int	ft_printf(char	*str, ...)
 {
-	// get next percent
-	// cast arg according to fs
-	// call on percent
 	static va_list	list;
 	int				len;
 
@@ -109,7 +106,7 @@ int	ft_printf(char	*str, ...)
 			}
 			else if (x == 'u' || x == 'd' || x == 'p' || x == 'x' || x == 'X')
 			{
-				len += handle_lint_arg(x, va_arg(list, long int));
+				len += handle_lint_arg(x, (long int)va_arg(list, int));
 			}
 			else if (x == 'c')
 			{
