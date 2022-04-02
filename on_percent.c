@@ -104,7 +104,9 @@ int	ft_printf(char *str, ...)
 			// printf("%c\n", x);
 			if (x == 's')
 				len += handle_str_arg(x, va_arg(list, char *)) - 2;
-			else if (x == 'i' || x == 'u' || x == 'd' || x == 'p' || x == 'x' || x == 'X')
+			else if (x == 'p')
+				len += handle_p((long int)va_arg(list, void *));
+			else if (x == 'i' || x == 'u' || x == 'd' || x == 'x' || x == 'X')
 				len += handle_lint_arg(x, (long int)(va_arg(list, int))) - 2;
 			else if (x == 'c')
 				len += handle_char_arg(x, va_arg(list, int)) - 2;
