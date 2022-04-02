@@ -64,10 +64,7 @@ char	str_seek(char *str)
 	format_start = 0;
 	len = 0;
 	while (str[i] && str[i] != '%')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+		write(1, &str[i++], 1);
 	if (str[i])
 	{
 		i++;
@@ -80,12 +77,7 @@ char	str_seek(char *str)
 			return (-1);
 	}
 	else
-	{
-		i = 0;
-		return(0);
-	}
-	// len += i;
-	// return (len);
+		return (i = 0);
 }
 
 //go bak to const
@@ -93,19 +85,19 @@ int	ft_printf(char *str, ...)
 {
 	static va_list	list;
 	int				len;
+	char			x;
 
 	va_start(list, str);
-	char x = str_seek(str);
+	x = str_seek(str);
 	len = ft_strlen(str);
 	while (x)
 	{
 		if (x != -1)
 		{
-			// printf("%c\n", x);
 			if (x == 's')
 				len += handle_str_arg(x, va_arg(list, char *)) - 2;
 			else if (x == 'i' || x == 'u' || x == 'd' || x == 'p' || x == 'x' || x == 'X')
-				len += handle_lint_arg(x, (long int)(va_arg(list, int))) - 2;
+				len += handle_lint_arg(x, (long int)va_arg(list, int)) - 2;
 			else if (x == 'c')
 				len += handle_char_arg(x, va_arg(list, int)) - 2;
 			else if (x == '%')
