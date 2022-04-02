@@ -88,8 +88,7 @@ char	str_seek(char *str)
 	// return (len);
 }
 
-//go bak to const
-int	ft_printf(char *str, ...)
+int	ft_printf(char	*str, ...)
 {
 	static va_list	list;
 	int				len;
@@ -103,18 +102,25 @@ int	ft_printf(char *str, ...)
 		{
 			// printf("%c\n", x);
 			if (x == 's')
+			{
 				len += handle_str_arg(x, va_arg(list, char *)) - 2;
+			}
 			else if (x == 'i' || x == 'u' || x == 'd' || x == 'p' || x == 'x' || x == 'X')
-				len += handle_lint_arg(x, (long int)(va_arg(list, int))) - 2;
+			{
+				len += handle_lint_arg(x, (long int)va_arg(list, int)) - 2;
+			}
 			else if (x == 'c')
+			{
 				len += handle_char_arg(x, va_arg(list, int)) - 2;
+			}
 			else if (x == '%')
+			{
 				len += (write(1, "%", 1)) - 2;
+			}
 		}
 		else
-			return (-1);
+			return(-1);
 		x = str_seek(str);
 	}
-	va_end(list);
 	return (len);
 }

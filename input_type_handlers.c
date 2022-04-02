@@ -32,28 +32,35 @@ int	handle_str_arg(char c, char *str)
 int	handle_lint_arg(char c, long int dec)
 {
 	//add lens
-	if (c == 'd' || c == 'u' || c == 'i')
+	if (c == 'd'  || c == 'u' || c == 'i')
 	{
 		ft_putnbr(dec);
-		return (num_len(dec));
+		return(num_len(dec));
 	}
 	if (c == 'x')
-		return (handle_x(dec));
-	if (c == 'X')
-		return (handle_X(dec));
+	{
+		return(handle_x(dec));
+	}
+		if (c == 'X')
+	{
+		return(handle_X(dec));
+	}
 	if (c == 'p')
 	{
+		//account for extra two char len
 		if (dec)
 		{
-			return (handle_p(dec));
+			return(handle_p(dec));
 		}
 		else
-			return (write(1, "(nil)", 5));
+		{
+			return(write(1, "(nil)", 6) - 1);
+		}
 	}
 	return (0);
 }
 
-int	handle_char_arg(char c, char b)
+int handle_char_arg(char c, char b)
 {
 	if (c == 'c')
 		write(1, &b, 1);

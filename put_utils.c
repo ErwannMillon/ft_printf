@@ -1,7 +1,7 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-long int	num_len(long int copy)
+long int num_len(long int copy)
 {
 	int	len;
 
