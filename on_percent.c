@@ -82,30 +82,28 @@ char	str_seek(char *str)
 	else
 	{
 		i = 0;
-		return(0);
+		return (0);
 	}
-	// len += i;
-	// return (len);
 }
 
 //go bak to const
-int	ft_printf(char *str, ...)
+int	ft_printf(const char *str, ...)
 {
 	static va_list	list;
 	int				len;
+	char 			x;
 
-	va_start(list, str);
-	char x = str_seek(str);
-	len = ft_strlen(str);
+	va_start(list, (char *)str);
+	x = str_seek((char *)str);
+	len = ft_strlen((char *)str);
 	while (x)
 	{
 		if (x != -1)
 		{
-			// printf("%c\n", x);
 			if (x == 's')
 				len += handle_str_arg(x, va_arg(list, char *)) - 2;
 			else if (x == 'p')
-				len += handle_p((long int)va_arg(list, void *));
+				len += handle_p((long int)va_arg(list, void *)) - 2;
 			else if (x == 'i' || x == 'u' || x == 'd' || x == 'x' || x == 'X')
 				len += handle_lint_arg(x, (long int)(va_arg(list, int))) - 2;
 			else if (x == 'c')
@@ -115,7 +113,7 @@ int	ft_printf(char *str, ...)
 		}
 		else
 			return (-1);
-		x = str_seek(str);
+		x = str_seek((char *)str);
 	}
 	va_end(list);
 	return (len);

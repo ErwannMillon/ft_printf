@@ -6,7 +6,7 @@
 /*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 19:10:44 by gmillon           #+#    #+#             */
-/*   Updated: 2022/03/25 19:10:57 by gmillon          ###   ########.fr       */
+/*   Updated: 2022/04/03 02:03:26 by gmillon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char	*ft_strncat(char *dest, char *src, int n);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 char	*ft_strrchr(char *str, int c);
 void	ft_bzero(void *s, int n);

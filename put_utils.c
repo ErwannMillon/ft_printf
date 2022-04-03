@@ -5,14 +5,19 @@ long int	num_len(long int copy)
 {
 	int	len;
 
-	len = 2;
+	len = 0;
+	if (copy == 0)
+		return (1);
+	if (copy < 0)
+	{
+		len++;
+		copy *= -1;
+	}
 	while (copy > 0)
 	{
 		copy = copy / 10;
 		len++;
 	}
-	if (copy < 0)
-		return (len + 1);
 	return (len);
 }
 

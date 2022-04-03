@@ -3,20 +3,25 @@
 
 int handle_X(long int dec)
 {
-	char	*hex;
-	int		len;
 	int		i;
+	char	*str;
+	int		len;
 
 	i = 0;
-	hex = base_convert(dec, "0123456789abcdef");
-	while (hex[i])
+	if (dec < 0)
+		str = base_convert_neg(dec * -1, "0123456789ABCDEF");
+	else
+		str = base_convert(dec, "0123456789ABCDEF");
+	len = ft_strlen(str);
+	while (str[i])
 	{
-		hex[i] = ft_toupper(hex[i]);
+		str[i] = ft_toupper(str[i]);
 		i++;
 	}
-	len = ft_strlen(hex);
-	write(1, hex, len);
-	free(hex);
+	write(1, str, len);
+	free(str);
+	// if (dec < 0)
+	// 	len++;
 	return (len);
 }
 
@@ -24,11 +29,18 @@ int	handle_x(long int dec)
 {
 	char	*str;
 	int		len;
-
-	str = base_convert(dec, "0123456789abcdef");
+	
+	if (dec < 0)
+		str = base_convert_neg(dec * -1, "0123456789abcdef");
+	else
+		str = base_convert(dec, "0123456789abcdef");
 	len = ft_strlen(str);
+	// if (dec < 0)
+	// 	write(1, "-", 1);
 	write(1, str, len);
 	free(str);
+	// if (dec < 0)
+	// 	len++;
 	return (len);
 }
 

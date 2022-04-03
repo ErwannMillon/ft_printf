@@ -11,7 +11,7 @@ int	handle_str_arg(char c, char *str)
 		{
 			// sub = ft_substr(str, 2, ft_strlen(str) - 2);
 			// handle_d(atoi_base(sub, "0123456789"));
-			free(sub);
+			// free(sub);
  		}
 		else if (ft_strncmp(str, "0", 1) == 0)
 		{
@@ -24,18 +24,25 @@ int	handle_str_arg(char c, char *str)
 	}
 	if (c == 's')
 	{
-		return (handle_s(str));
+		if (str)
+			return (handle_s(str));
+		else
+			return (write(1, "(null)", 6));
 	}
 	return (0);
 }
 
 int	handle_lint_arg(char c, long int dec)
 {
-	//add lens
-	if (c == 'd' || c == 'u' || c == 'i')
+	if (c == 'd' || c == 'i')
 	{
 		ft_putnbr(dec);
 		return (num_len(dec));
+	}
+	if (c == 'u')
+	{
+		ft_putnbr((unsigned int)dec);
+		return (num_len((unsigned int)dec));
 	}
 	if (c == 'x')
 		return (handle_x(dec));

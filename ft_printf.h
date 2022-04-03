@@ -19,9 +19,10 @@ int			handle_str_arg(char c, char *str);
 int			handle_char_arg(char c, char b);
 void		ft_putnbr(long int nb);
 void		ft_putstr(char *str);
-int			ft_printf(char	*str, ...);
+int			ft_printf(const char *str, ...);
 long int	num_len(long int copy);
-
+char * base_convert_neg(long int dec, char *base);
+int			ft_atoi_base(char *str, char *base);
 
 //i s str
 // u d p x X long int
