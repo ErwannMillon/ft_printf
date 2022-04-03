@@ -2,6 +2,7 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include <unistd.h>
+#include <limits.h>
 
 static char	*ft_strncat(char *dest, char *src, int n)
 {
@@ -64,6 +65,8 @@ char *base_convert(long int dec, char *str)
 	char	*result;
 	int		i;
 
+	if (dec == LONG_MIN)
+		return (ft_strdup("8000000000000000"));
 	result = malloc(10);
 	i = 0;
 	if (dec == 0)

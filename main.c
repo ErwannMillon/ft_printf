@@ -1,7 +1,6 @@
 #include "libft.h"
 #include "ft_printf.h"
-#include <string.h>
-#include <errno.h>
+#include <limits.h>
 
 int main (void)
 {
@@ -24,11 +23,11 @@ int main (void)
 	// ft_printf("abcd%iadf %d %umasdf, %x", -214748368, -4567, 0, 435);
 	// printf("\n");
 	//    printf("abcd%iadf %d %umasdf, %x", -214748368, -4567, 0, 435);
-	x = ft_printf(" %X ", -1654);
+	x = ft_printf(" %p %p ", LONG_MIN, LONG_MAX);
 	printf("     result: %d", x);
 
 	printf("\n");
-	x =    printf(" %X ", -1654);
+	x =    printf(" %p %p ", LONG_MIN, LONG_MAX);
 	printf("     result: %d", x);
 	printf("\nasaf\n");
 	// handle_x(200);
