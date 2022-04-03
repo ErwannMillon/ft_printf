@@ -20,8 +20,6 @@ int handle_X(long int dec)
 	}
 	write(1, str, len);
 	free(str);
-	// if (dec < 0)
-	// 	len++;
 	return (len);
 }
 
@@ -35,12 +33,8 @@ int	handle_x(long int dec)
 	else
 		str = base_convert(dec, "0123456789abcdef");
 	len = ft_strlen(str);
-	// if (dec < 0)
-	// 	write(1, "-", 1);
 	write(1, str, len);
 	free(str);
-	// if (dec < 0)
-	// 	len++;
 	return (len);
 }
 

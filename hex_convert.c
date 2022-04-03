@@ -42,7 +42,6 @@ static char	*ft_strrev(char *s)
 		x++;
 		end--;
 	}
-	// s[i] = 0;
 	return (s);
 }
 
@@ -108,7 +107,5 @@ char * base_convert_neg(long int dec, char *base)
 	result[i] = 0;
 	ft_strncat(result, poshex, ft_strlen(poshex));
 	free(poshex);
-	// int x = ft_atoi_base(result, "0123456789abcdef");
-	// printf("\nATOIBASE %d\n", x);
 	return (result);
 }

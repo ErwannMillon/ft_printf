@@ -87,6 +87,32 @@ char	str_seek(char *str)
 }
 
 //go bak to const
+int	parse_fs(va_list *list, int *len, char *str)
+{
+	char	x;
+
+	x = str_seek((char *)str);
+	while (x)
+	{
+		if (x != -1)
+		{
+			if (x == 's')
+				*len += handle_str_arg(x, va_arg(*list, char *)) - 2;
+			else if (x == 'p')
+				*len += handle_p((long int)va_arg(*list, void *)) - 2;
+			else if (x == 'i' || x == 'u' || x == 'd' || x == 'x' || x == 'X')
+				*len += handle_lint_arg(x, (long int)(va_arg(*list, int))) - 2;
+			else if (x == 'c')
+				*len += handle_char_arg(x, va_arg(*list, int)) - 2;
+			else if (x == '%')
+				*len += (write(1, "%", 1)) - 2;
+		}
+		else
+			return (-1);
+		x = str_seek((char *)str);
+	}
+}
+
 int	ft_printf(const char *str, ...)
 {
 	static va_list	list;
@@ -94,27 +120,28 @@ int	ft_printf(const char *str, ...)
 	char 			x;
 
 	va_start(list, (char *)str);
-	x = str_seek((char *)str);
+	// x = str_seek((char *)str);
 	len = ft_strlen((char *)str);
-	while (x)
-	{
-		if (x != -1)
-		{
-			if (x == 's')
-				len += handle_str_arg(x, va_arg(list, char *)) - 2;
-			else if (x == 'p')
-				len += handle_p((long int)va_arg(list, void *)) - 2;
-			else if (x == 'i' || x == 'u' || x == 'd' || x == 'x' || x == 'X')
-				len += handle_lint_arg(x, (long int)(va_arg(list, int))) - 2;
-			else if (x == 'c')
-				len += handle_char_arg(x, va_arg(list, int)) - 2;
-			else if (x == '%')
-				len += (write(1, "%", 1)) - 2;
-		}
-		else
-			return (-1);
-		x = str_seek((char *)str);
-	}
+	// while (x)
+	// {
+	// 	if (x != -1)
+	// 	{
+	// 		if (x == 's')
+	// 			len += handle_str_arg(x, va_arg(list, char *)) - 2;
+	// 		else if (x == 'p')
+	// 			len += handle_p((long int)va_arg(list, void *)) - 2;
+	// 		else if (x == 'i' || x == 'u' || x == 'd' || x == 'x' || x == 'X')
+	// 			len += handle_lint_arg(x, (long int)(va_arg(list, int))) - 2;
+	// 		else if (x == 'c')
+	// 			len += handle_char_arg(x, va_arg(list, int)) - 2;
+	// 		else if (x == '%')
+	// 			len += (write(1, "%", 1)) - 2;
+	// 	}
+	// 	else
+	// 		return (-1);
+	// 	x = str_seek((char *)str);
+	// }
+	parse_fs(&list, &len, (char *)str);
 	va_end(list);
 	return (len);
 }
