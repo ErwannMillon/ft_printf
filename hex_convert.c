@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hex_convert.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 23:07:48 by gmillon           #+#    #+#             */
+/*   Updated: 2022/04/05 18:43:00 by gmillon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "libft.h"
 #include "ft_printf.h"
@@ -45,7 +57,7 @@ static char	*ft_strrev(char *s)
 	return (s);
 }
 
-int base_index(char c, char *base)
+int	base_index(char c, char *base)
 {
 	int	i;
 
@@ -59,14 +71,12 @@ int base_index(char c, char *base)
 	return (-1);
 }
 
-char *base_convert(long int dec, char *str)
+char	*base_convert(unsigned long int dec, char *str)
 {
 	char	*result;
 	int		i;
 
-	if (dec == LONG_MIN)
-		return (ft_strdup("8000000000000000"));
-	result = malloc(10);
+	result = malloc(sizeof(char) * 20);
 	i = 0;
 	if (dec == 0)
 	{
@@ -80,19 +90,18 @@ char *base_convert(long int dec, char *str)
 		i++;
 	}
 	result[i] = 0;
-	return (ft_strrev(result));
+	return (ft_strrev((char *)result));
 }
 
-char * base_convert_neg(long int dec, char *base)
+char	*base_convert_neg(long long int dec, char *base)
 {
 	char	*poshex;
 	int		i;
 	char	*result;
-	int		k;
 
 	i = 0;
 	poshex = base_convert(dec - 1, base);
-	while(poshex[i])
+	while (poshex[i])
 	{
 		poshex[i] = base[15 - base_index(poshex[i], base)];
 		i++;

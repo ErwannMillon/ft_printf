@@ -1,24 +1,30 @@
-SRCS := ft_atoibase.c put_utils.c input_type_handlers.c formats_char.c formats_num.c formats_num2.c on_percent.c hex_convert.c
-LIBFTSRCS = ft_strncat.c ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_islower.c ft_isprint.c ft_isupper.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
-LIBFTSRCSPREF = $(addprefix libft/, $(LIBFTSRCS))
+SRCS := put_utils.c input_type_handlers.c formats_char.c formats_num.c formats_num2.c ft_printf.c hex_convert.c parse_utils.c
 NAME = libftprintf.a 
 CFLAGS = -Wall -Wextra -Werror
 OBJS := $(SRCS:%.c=%.o)
-LIBFTOBJS = $(LIBFTSRCSPREF:%.c=%.o)
+
 %.o: %.c
-	gcc -ggdb -c $^
-$(NAME): $(OBJS) $(LIBFTOBJS)
-	ar -crs $(NAME) $(OBJS) $(LIBFTSRCS:%.c=%.o)
+	gcc $(CFLAGS) -I./libft -c $^
+
 all: $(NAME)
-libft.a:
-	cd ./libft && make
-	cd ./libft && mv libft.a ../
+
+$(NAME): libft $(OBJS) 
+	ar -crs $(NAME) $(OBJS)
+libft:
+	$(MAKE) -C ./libft bonus
+	cp libft/libft.a $(NAME)
 test: $(NAME)
-	gcc -ggdb main.c $(SRCS) libft.a
+	gcc -ggdb main.c $(SRCS) -Werror -Wextra -Wall libft.a
 asan: $(OBJS)
 	gcc -fsanitize=address $(OBJS) -o $(NAME)
+git:
+	git add ./libft $(SRCS) Makefile
 clean:
+	$(MAKE) -C ./libft clean
 	rm -f $(OBJS) $(BOBJS)
 fclean: clean
+	$(MAKE) -C ./libft fclean
 	rm -f $(NAME)
 re: fclean $(NAME)
+
+.PHONY:	all clean fclean re libft

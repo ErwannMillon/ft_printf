@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_type_handlers.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmillon <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 23:07:52 by gmillon           #+#    #+#             */
+/*   Updated: 2022/04/05 17:29:55 by gmillon          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "libft.h"
 
 int	handle_str_arg(char c, char *str)
 {
-	char	*sub;
-
 	if (c == 's')
 	{
 		if (str)
@@ -30,14 +40,7 @@ int	handle_lint_arg(char c, long int dec)
 	if (c == 'x')
 		return (handle_x(dec));
 	if (c == 'X')
-		return (handle_X(dec));
-	if (c == 'p')
-	{
-		if (dec)
-			return (handle_p(dec));
-		else
-			return (write(1, "(nil)", 5));
-	}
+		return (handle_uppercase_x(dec));
 	return (0);
 }
 
