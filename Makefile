@@ -1,6 +1,7 @@
 SRCS := put_utils.c input_type_handlers.c formats_char.c formats_num.c formats_num2.c ft_printf.c hex_convert.c parse_utils.c
 NAME = libftprintf.a 
 CFLAGS = -Wall -Wextra -Werror
+HEADERS = libft.h ft_printf.h
 OBJS := $(SRCS:%.c=%.o)
 
 %.o: %.c
@@ -18,7 +19,7 @@ test: $(NAME)
 asan: $(OBJS)
 	gcc -fsanitize=address $(OBJS) -o $(NAME)
 git:
-	git add ./libft $(SRCS) Makefile
+	git add ./libft $(SRCS) Makefile $(HEADERS)
 clean:
 	$(MAKE) -C ./libft clean
 	rm -f $(OBJS) $(BOBJS)
